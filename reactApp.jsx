@@ -10,3 +10,24 @@ var SimpleListRow = React.createClass({
         )
     }
 })
+
+var SimpleList = React.createClass({
+    getInitialState: function(){
+        return {
+            simpleList: [
+                {
+                    'row':'cargando   ....'
+                }
+            ]
+        }
+    },
+    render: function(){
+        return (
+            <span>
+                <p><strong>
+                    Pasos para dominar un nuevo lenguage de programación
+                </strong></p>
+             </span>
+        )
+    }
+})
