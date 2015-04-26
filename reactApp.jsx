@@ -21,6 +21,18 @@ var SimpleList = React.createClass({
             ]
         }
     },
+    componentDidMount: function(){
+        $.ajax({
+            url:this.props.url,
+            dataType: 'json',
+            success: function(date_timeta){
+                this.setState({})
+            }.bind(this),
+            error:function(xhr,status,err){
+                console.error(this.props-url,status,err.toString())
+            }.bind(this)
+        })
+    }
     render: function(){
         return (
             <span>
@@ -30,4 +42,9 @@ var SimpleList = React.createClass({
              </span>
         )
     }
+
+    React.render(
+        <SimpleList url='SimpleList_data.json'>
+        document.getElementById('simpleList')
+    )
 })
