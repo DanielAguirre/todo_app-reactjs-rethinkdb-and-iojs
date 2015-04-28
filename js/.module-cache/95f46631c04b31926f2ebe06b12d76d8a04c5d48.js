@@ -1,18 +1,19 @@
 'use strict'
 
-var SimpleListRow = React.createClass({
+var SimpleListRow = React.createClass({displayName: "SimpleListRow",
     render: function(){
         var rows = this.props.simpleList;
         return (
-            <ol>
-                <li>{elemt.row}</li>
-            </lo>
-        )
+            React.createElement("ol", null, 
+                React.createElement("li", null, elemt.row)
+            )
+        );
     }
 })
 
-var SimpleList = React.createClass({
+var SimpleList = React.createClass({displayName: "SimpleList",
     getInitialState: function(){
+        console.log('initial')
         return {
             simpleList: [
                 {
@@ -32,19 +33,19 @@ var SimpleList = React.createClass({
                 console.error(this.props-url,status,err.toString())
             }.bind(this)
         })
-    }
+    },
     render: function(){
         return (
-            <span>
-                <p><strong>
-                    Pasos para dominar un nuevo lenguage de programación
-                </strong></p>
-             </span>
+            React.createElement("span", null, 
+                React.createElement("p", null, React.createElement("strong", null, 
+                    "Pasos para dominar un nuevo lenguage de programación"
+                ))
+             )
         )
     }
-
-    React.render(
-        <SimpleList url='SimpleList_data.json'>
-        document.getElementById('simpleList')
-    )
 })
+
+React.render(
+    React.createElement(SimpleList, {url: "SimpleList_data.json"}),
+    document.getElementById('simpleList')
+)
