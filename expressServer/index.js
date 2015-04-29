@@ -14,7 +14,8 @@ function ExpressServer(){
 	//middlewares
 
 	this.expressServer.use(bodyParser.json())
-
+	this.expressServer.use(express.static(path.join(__dirname,'..','public')))
+	//template Engine
 	this.expressServer.engine('html',swig.renderFile)
 	this.expressServer.set('view engine','html')
 	this.expressServer.set('views',path.join(__dirname,'..','public'))
