@@ -4,6 +4,8 @@ const path = require('path')
 const express = require('express')
 const swig = require('swig')
 const bodyParser = require('body-parser')
+const urls = require('./urls')
+
 
 function ExpressServer(){
 
@@ -15,8 +17,9 @@ function ExpressServer(){
 
 	this.expressServer.engine('html',swig.renderFile)
 	this.expressServer.set('view engine','html')
-	this.expressServer.set('viewa',path.join(__dirname,'..','public'))
+	this.expressServer.set('views',path.join(__dirname,'..','public'))
 
+	this.expressServer.use('/', urls)
 }
 
 module.exports = ExpressServer

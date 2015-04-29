@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "make test",
-    "build-jsx";"jsx --extension jsx  watch jsx/ js/",
+    "build-jsx":"jsx --extension jsx  watch jsx/ js/",
     "start": "node server.js"
   },
   "repository": {
