@@ -2,15 +2,14 @@
 
 const http = require('http')
 const expressServer = require('./expressServer')
-
+const config = require('./config')
 const app = new expressServer()
 const server = http.createServer(app.expressServer)
-const port = process.env.RT || 3000
 
 server.on('listening', onListening)
 
-server.listen(port)
+server.listen(config.dev.port)
 
 function onListening () {
-	console.log( `Server running in port ${port}`)
+	console.log( `Server running in port ${config.dev.port}`)
 }

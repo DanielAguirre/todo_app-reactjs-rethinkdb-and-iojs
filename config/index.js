@@ -4,11 +4,11 @@ const port = process.env.PORT
 let config = {}
 
 config.dev = {
-	port: port || 300 ,
+	port: port || 3000 ,
 	rethinkdb:{
 		host:'192.168.1.6',
-		port:28015
-		authKey:''
+		port:28015,
+		authKey:'',
 		db:'test'
 	} 
 
