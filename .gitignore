@@ -1,4 +1,4 @@
 node_modules
-js/.module-cache
-js/.module-cache
+public/js/.module-cache
+client/jsx/.module-cache
 *.log
