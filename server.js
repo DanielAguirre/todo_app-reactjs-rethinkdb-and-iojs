@@ -8,8 +8,8 @@ const server = http.createServer(app.expressServer)
 
 server.on('listening', onListening)
 
-server.listen(config.dev.port)
+server.listen(config.port)
 
 function onListening () {
-	console.log( `Server running in port ${config.dev.port}`)
+	console.log( `Server running in port ${config.port}`)
 }
