@@ -1,4 +1,5 @@
 node_modules
+rethinkdb_data
 .module_cache
 public/js/.module-cache
 client/jsx/.module-cache

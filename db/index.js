@@ -9,7 +9,8 @@ module.exports = function (){
 	function connect(){
 		r.connect(config.rethinkdb)
 		 .then(function(conn){
-			 r.dbList.run(conn)
+		 	console.log(r.dbList)
+			 r.dbList().run(conn)
 			  .then(function (dbList) {
 				  if(dbList.indexOf(config.rethinkdb.db)>-1){
 					  initialize(conn)
