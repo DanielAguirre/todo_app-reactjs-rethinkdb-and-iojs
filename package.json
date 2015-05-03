@@ -22,5 +22,9 @@
     "mocha": "^2.2.4",
     "rethinkdb": "^2.0.0",
     "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4"
   }
 }

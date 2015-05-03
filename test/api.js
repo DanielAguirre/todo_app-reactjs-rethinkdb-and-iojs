@@ -1,12 +1,12 @@
 'use strict'
 
-const request = require('supertest-as-promised')
-const api = require('../server..js')
-const host = procces.env.API_TEST_HOST || api
+const api = require('../server.js')
+const host = process.env.API_TEST_HOST || api
+let request = require('supertest-as-promised')
 
-const request = requrest('host')
+request = request(host)
 
-describe('resource /notas',function(){
+describe('resource /task',function(){
     describe('POST',function(){
         it('should create a new task ', function(done){
             request.post('api/todo')
