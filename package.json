@@ -17,7 +17,9 @@
   "homepage": "https://github.com/DanielAguirre/todo_app-reactjs-rethinkdb-and-iojs",
   "dependencies": {
     "body-parser": "^1.12.3",
+    "chai": "^2.3.0",
     "express": "^4.12.3",
+    "mocha": "^2.2.4",
     "rethinkdb": "^2.0.0",
     "swig": "^1.4.2"
   }
