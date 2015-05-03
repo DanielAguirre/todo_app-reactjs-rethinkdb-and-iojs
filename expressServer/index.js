@@ -6,7 +6,6 @@ const swig = require('swig')
 const bodyParser = require('body-parser')
 const urls = require('./urls')
 
-
 function ExpressServer(){
 
 	this.expressServer = express()
@@ -20,7 +19,12 @@ function ExpressServer(){
 	this.expressServer.set('view engine','html')
 	this.expressServer.set('views',path.join(__dirname,'..','public'))
 
-	this.expressServer.use('/', urls)
+	/*this.expressServer.use('/', urls)
+	this.expressServer.use('api/',)*/
+
+	for(var url in urls){
+		this.expressServer.use(url,urls[url])
+	}
 }
 
 module.exports = ExpressServer

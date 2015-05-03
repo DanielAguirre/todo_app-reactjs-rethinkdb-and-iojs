@@ -8,8 +8,7 @@ let tableIndex = 'createdAt'
 module.exports = function (){
 	function connect(){
 		r.connect(config.rethinkdb)
-		 .then(function(conn){
-		 	console.log(r.dbList)
+		 .then(function(conn){		 	
 			 r.dbList().run(conn)
 			  .then(function (dbList) {
 				  if(dbList.indexOf(config.rethinkdb.db)>-1){
@@ -27,8 +26,7 @@ module.exports = function (){
 	
 	function initialize(conn){
 		r.table(table).indexWait(tableIndex).run(conn)
-		 .then(function(result){
-			 console.log('Resultado table', result)
+		 .then(function(result){			 
 		 })
 		 .error(function(error){
 			 r.tableCreate(table).run(conn)
