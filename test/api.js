@@ -9,13 +9,12 @@ request = request(host)
 describe('resource /task',function(){
     describe('POST',function(){
         it('should create a new task ', function(done){
-            request.post('/todo')
+            request.post('/api/list')
                 .set('Accept', 'application/json')
-                .send({'row':'Leer la documentación'})
+                .send({'row':'read Documentation'})
                 .expect('Content-Type',/application\/json/)
                 .expect(201)
-                .end(function(err,res){                    
-                    console.log("body",res)
+                .end(function(err,res){
                     let body = res.body
 
                     expect(body).to.have.property('task')
@@ -23,6 +22,7 @@ describe('resource /task',function(){
                     let task = body.task
 
                     expect(task).to.have.property('row','read Documentation')
+                    expect(task).to.have.property('createdAt')
                     expect(task).to.have.property('id')
                     done()
                 })
