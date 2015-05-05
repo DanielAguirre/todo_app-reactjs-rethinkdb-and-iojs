@@ -56,5 +56,41 @@ describe('resource /task',function(){
 
         })
     })
+
+    describe('PUt',function(){
+        it('Should update an existing task',function(){
+            let id ;
+            request.post('/api/list')
+                .set('Accept', 'application/json')
+                .send({'row':'Completa tutorials'})
+                .expect('Content-Type',/application\/json/)
+                .expect(201)
+                .then(function(res){
+                    id = res.body.task.id
+                    return request
+                            .get('/api/list/'+id)
+                            .set('Accept', 'application/json')
+                            .send()
+                }, done)
+                .then(function(res){
+                    const task = res.body.task
+                    task.row = "Finish Tutorials"
+
+                    return request
+                                .put('/api/list/'+id)
+                                .send(task)
+                                .expect(200)
+                                .expect('Content-Type',/application\/json/)
+                }, done)
+                .then(function(){
+                    const task = res.body.task
+
+                    expect(task).to.have.property('row','Finish Tutorials')
+                    expect(task).to.have.property('createdAt')
+                    expect(task).to.have.property('id',id)
+                    done()
+                }, done)
+        })
+    })
 })
  
