@@ -31,7 +31,7 @@ describe('resource /task',function(){
     })
 
     describe('GET', function(){
-        it('Should get an existing task',function(){
+        it('Should get an existing task',function(done){
             let id;
             request.post('/api/list')
                 .set('Accept', 'application/json')
@@ -40,21 +40,19 @@ describe('resource /task',function(){
                 .expect(201)
                 .then(function(res){
                     id = res.body.task.id
-
                     return request
                             .get('/api/list/'+id)
                             .expect(200)
                             .expect('Content-Type',/application\/json/)
-
                 },done)
-                ,thend(function(res){
+                .then(function(res){
                     const task = res.body.task
 
                     expect(task).to.have.property('row','Completa tutorials')
                     expect(task).to.have.property('createdAt')
                     expect(task).to.have.property('id',id)
-                    done()  
-                })
+                    done()
+                }, done)
 
         })
     })

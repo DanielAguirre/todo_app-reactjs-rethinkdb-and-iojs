@@ -17,7 +17,22 @@ module.exports = function(){
 			})
 		})
 	}
+
+	function find(id,callback){
+		r.connect(config.rethinkdb)
+		.then(function(conn){
+			r.table(table).get(id).run(conn)
+			.then(function(data){
+				callback(data)
+			})
+			.error(function(err){
+				console.error(err.message)
+			})
+		})
+	}
+
 	return {
-		add:add
+		add:add,
+		find:find
 	}
 }

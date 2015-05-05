@@ -4,10 +4,11 @@ const express = require('express')
 const list = require('../../db/list')
 const api = express.Router()
 const ListModel = list()
+
 api
     .route('/list/:id?')
     .all(function(req,res,next){
-        console.log(req.nethod,req.path)
+        console.log(req.method,req.path)
         res.set('Content-Type','application/json')
         next();
     })
@@ -20,7 +21,11 @@ api
 
     })
     .get(function(req,res){
-            res.json([
+        ListModel.find(req.params.id,function(row){
+            res.json({task:row})
+        })
+    })
+            /*res.json([
         			{
                 		'row': 'Leer la documentación'
             		},
@@ -33,7 +38,6 @@ api
             		{
                 	   'row':'Escribir sobre lo que aprendiste'
             		}
-                ])
-})
+                ])*/
 
 module.exports = api
