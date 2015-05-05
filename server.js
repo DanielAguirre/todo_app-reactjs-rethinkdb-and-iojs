@@ -9,7 +9,6 @@ const server = http.createServer(app.expressServer)
 
 
 GLOBAL.config = require('./config')[env]
-console.log(env, config,require('./config')[env])
 
 const db = new database()
 

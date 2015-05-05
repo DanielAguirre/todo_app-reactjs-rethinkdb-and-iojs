@@ -1,7 +1,6 @@
 'use strict'
 
 const r = require('rethinkdb')
-//const config = require('../config')
 let table = 'list'
 let tableIndex = 'createdAt'
 

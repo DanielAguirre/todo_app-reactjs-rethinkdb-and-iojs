@@ -29,4 +29,34 @@ describe('resource /task',function(){
                 })
         })
     })
+
+    describe('GET', function(){
+        it('Should get an existing task',function(){
+            let id;
+            request.post('/api/list')
+                .set('Accept', 'application/json')
+                .send({'row':'Completa tutorials'})
+                .expect('Content-Type',/application\/json/)
+                .expect(201)
+                .then(function(res){
+                    id = res.body.task.id
+
+                    return request
+                            .get('/api/list/'+id)
+                            .expect(200)
+                            .expect('Content-Type',/application\/json/)
+
+                },done)
+                ,thend(function(res){
+                    const task = res.body.task
+
+                    expect(task).to.have.property('row','Completa tutorials')
+                    expect(task).to.have.property('createdAt')
+                    expect(task).to.have.property('id',id)
+                    done()  
+                })
+
+        })
+    })
 })
+ 
