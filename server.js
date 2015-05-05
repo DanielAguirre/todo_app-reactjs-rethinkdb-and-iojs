@@ -1,12 +1,15 @@
 'use strict'
 
+const env = process.env.NODE_ENV || 'development'
 const http = require('http')
 const expressServer = require('./expressServer')
 const database = require('./db') 
-const config = require('./config')
 const app = new expressServer()
-
 const server = http.createServer(app.expressServer)
+
+
+GLOBAL.config = require('./config')[env]
+console.log(env, config,require('./config')[env])
 
 const db = new database()
 

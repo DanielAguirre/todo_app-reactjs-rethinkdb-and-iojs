@@ -1,8 +1,6 @@
 'use strict'
 
-
 const r = require('rethinkdb')
-const config = require('../config')
 const table ='list'
 
 module.exports = function(){
@@ -15,7 +13,7 @@ module.exports = function(){
 				callback(data.changes[0].new_val)
 			})
 			.error(function(err){
-				console.error(err.message())
+				console.error(err.message)
 			})
 		})
 	}

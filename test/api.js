@@ -1,5 +1,6 @@
 'use strict'
 
+process.env.NODE_ENV = 'test'
 const api = require('../server.js')
 const host = process.env.API_TEST_HOST || api
 let request = require('supertest-as-promised')
