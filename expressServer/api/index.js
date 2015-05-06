@@ -22,6 +22,11 @@ api
     })
     .get(function(req,res){
         ListModel.find(req.params.id,function(row){
+            if(!row){
+                return res
+                    .status(400)
+                    .send();
+            }
             res.json({task:row})
         })
     })

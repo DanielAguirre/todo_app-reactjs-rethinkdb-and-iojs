@@ -106,7 +106,7 @@ describe('resource /task',function(){
                                     .expect(204)
                     }, done)
                     .then(function(res){
-                        return request.get('/api/list/')
+                        return request.get('/api/list/'+id)
                                 .expect(400)
                     }, done)
                     .then(function(res){
