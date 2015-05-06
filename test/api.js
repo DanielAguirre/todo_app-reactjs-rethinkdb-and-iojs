@@ -92,5 +92,27 @@ describe('resource /task',function(){
                 }, done)
         })
     })
+
+    describe('DELETE', function(){
+        it('Should delete an existing task', function(done){
+            let id
+            request.post('/api/list')
+                    .send({'row':'Completa tutorials'})
+                    .expect(201)
+                    .then(function(res){
+                        id = res.body.task.id
+                        return request.delete('/api/list/'+id)
+                                    .set('Accept','application/json')
+                                    .expect(204)
+                    }, done)
+                    .then(function(res){
+                        return request.get('/api/list/')
+                                .expect(400)
+                    }, done)
+                    .then(function(res){
+                        done()
+                    }, done)
+        })
+    })
 })
  
