@@ -4,7 +4,7 @@ const r = require('rethinkdb')
 const table ='list'
 
 module.exports = function(){
-	functibon add(row, callback){
+	function add(row, callback){
 		row.createdAt = r.now()	
 		r.connect(config.rethinkdb)
 		.then(function(conn){

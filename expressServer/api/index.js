@@ -5,6 +5,11 @@ const list = require('../../db/list')
 const api = express.Router()
 const ListModel = list()
 
+
+api.get('/list/', function(req,res){
+        console.log("hola")
+    })
+
 api
     .route('/list/:id?')
     .all(function(req,res,next){
