@@ -29,6 +29,13 @@ api
         ListModel.update(req.params.id, req.body,function(row){
             res.json({task:row})
         })
-    })            
+    })
+    .delete(function(req,res){
+        ListModel.remove(req.params.id,function(){
+            res
+                .status(204)
+                .send();
+        })
+    })              
 
 module.exports = api

@@ -44,9 +44,23 @@ module.exports = function(){
 		})
 	}
 
+	function remove(id,callback){
+		r.connect(config.rethinkdb)
+		.then(function(conn){
+			r.table(table).get(id).delete().run(conn)
+			.then(function(){
+					callback()
+				})
+		})
+		.error(function(err){
+			console.error(err.message)
+		})
+	}
+
 	return {
 		add:add,
 		find:find,
-		update:update
+		update:update,
+		remove:remove
 	}
 }
