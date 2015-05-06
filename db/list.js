@@ -31,8 +31,22 @@ module.exports = function(){
 		})
 	}
 
+	function update(id, data,callback){		
+		r.connect(config.rethinkdb)
+		.then(function(conn){
+			r.table(table).get(id).update(data,{returnChanges: true}).run(conn)
+				.then(function(data){
+					callback(data.changes[0].new_val)
+				})
+		})
+		.error(function(err){
+			console.error(err.message)
+		})
+	}
+
 	return {
 		add:add,
-		find:find
+		find:find,
+		update:update
 	}
 }

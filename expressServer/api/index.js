@@ -25,6 +25,11 @@ api
             res.json({task:row})
         })
     })
+    .put(function(req,res){
+        ListModel.update(req.params.id, req.body,function(row){
+            res.json({task:row})
+        })
+    })
             /*res.json([
         			{
                 		'row': 'Leer la documentación'

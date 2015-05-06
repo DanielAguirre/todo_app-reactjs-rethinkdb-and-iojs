@@ -57,8 +57,8 @@ describe('resource /task',function(){
         })
     })
 
-    describe('PUt',function(){
-        it('Should update an existing task',function(){
+    describe('PUT',function(){
+        it('Should update an existing task',function(done){
             let id ;
             request.post('/api/list')
                 .set('Accept', 'application/json')
@@ -82,7 +82,7 @@ describe('resource /task',function(){
                                 .expect(200)
                                 .expect('Content-Type',/application\/json/)
                 }, done)
-                .then(function(){
+                .then(function(res){
                     const task = res.body.task
 
                     expect(task).to.have.property('row','Finish Tutorials')
