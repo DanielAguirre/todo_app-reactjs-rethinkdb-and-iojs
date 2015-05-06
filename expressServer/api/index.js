@@ -7,8 +7,11 @@ const ListModel = list()
 
 
 api.get('/list/', function(req,res){
-        console.log("hola")
+        ListModel.findAll(function(data){
+            console.log("hola", data)
+        })
     })
+            
 
 api
     .route('/list/:id?')

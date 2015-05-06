@@ -31,6 +31,19 @@ module.exports = function(){
 		})
 	}
 
+	function findAll(callback){
+		r.connect(config.rethinkdb)
+		.then(function(conn){
+			r.table(table).getAll('id').run(conn)
+			.then(function(rows){
+				callback(rows)
+			})
+			.error(function(err){
+				console.error(err.message)
+			})
+		})
+	}
+
 	function update(id, data,callback){		
 		r.connect(config.rethinkdb)
 		.then(function(conn){
@@ -60,6 +73,7 @@ module.exports = function(){
 	return {
 		add:add,
 		find:find,
+		findAll:findAll,
 		update:update,
 		remove:remove
 	}
