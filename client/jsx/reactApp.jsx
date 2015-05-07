@@ -14,7 +14,8 @@ var SimpleList = React.createClass({
             url:this.props.url,
             dataType: 'json',
             success: function(data){
-                this.setState({simpleList:data})
+                console.log("data",data.tasks)
+                this.setState({simpleList:data.tasks})
             }.bind(this),
             error:function(xhr,status,err){
                 console.error(this.props.url,status,err.toString())
@@ -33,7 +34,8 @@ var SimpleList = React.createClass({
 
 var SimpleListRow = React.createClass({
     render: function(){
-        var rows = this.props.simpleList;        
+        console.log(this.props)
+        var rows = this.props.simpleList; 
         return (
             <ol>
                 {rows.map(function(element) {
@@ -46,8 +48,30 @@ var SimpleListRow = React.createClass({
     }
 })
 
+var SimpleListForm = React.createClass({
+    handleSubmit:  function(e){
+        e.preventDefault();
+        var item = React.findDome(this.refs.task).value.trim()
+
+        if(!item){
+            return 
+        }
+
+        React.findDOMNode(this.ref.task).value=''
+        return 
+    }
+    render: function(){
+        return {
+            <form onSubmit={this.handleSubmit}>
+                <input type='text' refs='task'>
+                <button type='submit'> Add Task </button>
+            </form>
+        }
+    }
+})
+
 React.render(
-    <SimpleList url='simpleList'/>,
+    <SimpleList url='api/list'/>,
     document.getElementById('simpleList')
 )
 
