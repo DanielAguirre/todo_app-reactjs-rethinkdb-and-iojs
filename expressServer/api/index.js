@@ -7,8 +7,10 @@ const ListModel = list()
 
 
 api.get('/list/', function(req,res){
-        ListModel.findAll(function(data){
-            console.log("hola", data)
+        ListModel.findAll(function(data){            
+            res
+                .set('Content-Type','application/json')
+                .json({tasks:data})
         })
     })
             

@@ -80,26 +80,27 @@ describe('resource /task',function(){
                     return  request.get('/api/list')
                                 .send()
                                 .expect(200)
-                                .expect('Content-Type')
+                                .expect('Content-Type',/application\/json/)
                 }, done)
                 .then(function(res){
                     const body = res.body
+                                        
                     expect(body).to.have.property('tasks');
-                    expect(body.notas).to.be.an('array')
+                    expect(body.tasks).to.be.an('array')
                         .and.to.have.length.above(0);
 
                     const tasks = body.tasks
-                    
-                    const task1 = _.find(tasks,{id:task1})
-                    const task2 = _.find(tasks,{id:task2})
+                                        
+                    const task1 = _.find(tasks,{id:id})
+                    const task2 = _.find(tasks,{id:id2})
 
                     expect(task1).to.have.property('row','read Documentation')
                     expect(task1).to.have.property('createdAt')
-                    expect(task1).to.have.property('_id',id);
+                    expect(task1).to.have.property('id',id);
 
                     expect(task2).to.have.property('row','Complete tutorials')
                     expect(task2).to.have.property('createdAt')
-                    expect(task2).to.have.property('_id',id2);
+                    expect(task2).to.have.property('id',id2);
 
                     done()
                 }, done)

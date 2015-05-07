@@ -15,6 +15,9 @@ module.exports = function(){
 			.error(function(err){
 				console.error(err.message)
 			})
+			.finally(function(){
+				conn.close();
+			})
 		})
 	}
 
@@ -28,20 +31,25 @@ module.exports = function(){
 			.error(function(err){
 				console.error(err.message)
 			})
+			.finally(function(){
+				conn.close();
+			})
 		})
 	}
 
 	function findAll(callback){
 		r.connect(config.rethinkdb)
 		.then(function(conn){
-			r.table(table).getAll('id').run(conn)
-			.then(function(rows){
-				callback(rows)
-			})
+			return r.table(table).run(conn)
 			.error(function(err){
 				console.error(err.message)
 			})
+			.finally(function(){
+				conn.close();
+			})
 		})
+		.then(function(cursor){ return cursor.toArray() })
+		.then(function(output){	callback(output) })
 	}
 
 	function update(id, data,callback){		
@@ -51,10 +59,14 @@ module.exports = function(){
 				.then(function(data){
 					callback(data.changes[0].new_val)
 				})
+				.error(function(err){
+					console.error(err.message)
+				})
+				.finally(function(){
+					conn.close();
+				})
 		})
-		.error(function(err){
-			console.error(err.message)
-		})
+		
 	}
 
 	function remove(id,callback){
@@ -64,9 +76,12 @@ module.exports = function(){
 			.then(function(){
 					callback()
 				})
-		})
-		.error(function(err){
-			console.error(err.message)
+			.error(function(err){
+				console.error(err.message)
+			})
+			.finally(function(){
+				conn.close();
+			})
 		})
 	}
 
