@@ -18,15 +18,14 @@ api.get('/list/', function(req,res){
 api
     .route('/list/:id?')
     .all(function(req,res,next){
-        console.log(req.method,req.path)
         res.set('Content-Type','application/json')
         next();
     })
-    .post(function(req,res){ 
-        ListModel.add(req.body,function(row){            
+    .post(function(req,res){
+        ListModel.add(req.body,function(row){
             res
                 .status(201)
-                .json({task:row})
+                .json(row)
         })
 
     })

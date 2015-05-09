@@ -13,6 +13,7 @@ function ExpressServer(){
 	//middlewares
 
 	this.expressServer.use(bodyParser.json())
+	this.expressServer.use(bodyParser.urlencoded({ extended: false }))
 	this.expressServer.use(express.static(path.join(__dirname,'..','public')))
 	//template Engine
 	this.expressServer.engine('html',swig.renderFile)
